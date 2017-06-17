@@ -1,10 +1,16 @@
 package com.lhadalo.oladahl.rapporteringkotlin.activities
 
+import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.telephony.SmsManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.lhadalo.oladahl.rapporteringkotlin.R
 import com.lhadalo.oladahl.rapporteringkotlin.realm.RealmController
 import com.lhadalo.oladahl.rapporteringkotlin.realm.model.Contact
@@ -21,10 +27,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), WeatherFetcher.WeatherFetchFinished, RealmController.RealmTransactionChange {
-    val TAG = "MainActivity"
+    private val TAG = "MainActivity"
     val prefs: PreferenceUtil by lazy { PreferenceUtil(this) }
     val locHelper: LocationHelper by lazy { LocationHelper(this) }
     val realmController: RealmController = RealmController.create(this)
+
+    private val SMS = 1
+    private val EMAIL = 2
+    private val SMS_REQUEST = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,15 +72,45 @@ class MainActivity : AppCompatActivity(), WeatherFetcher.WeatherFetchFinished, R
         return super.onOptionsItemSelected(item)
     }
 
-    fun listeners(): Unit {
+    fun listeners() {
+        btn_send_sms.setOnClickListener {
+            val report = getReport()
+            if (report.isNotBlank()) {
 
+            }
+        }
     }
 
-    fun getText(): String {
+    fun createSendDialog(source: Int, report: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Skicka rapport?")
+        builder.setMessage("Är du säker?")
+
+        builder.setPositiveButton("Skicka", { dialog, which ->
+            when (source) {
+                SMS -> {
+                    val smsManager = SmsManager.getDefault()
+                    val smsBodyParts = smsManager.divideMessage(report)
+                    if (requestSmsPermission()) {
+                        val contacts = realmController.getAllContacts()
+                        contacts.forEach { contact ->
+                            contact.phonenumbers.forEach { number ->
+                                smsManager.sendMultipartTextMessage(number.phoneNumber, null, smsBodyParts, null, null)
+                            }
+                        }
+                        Toast.makeText(this, "SMS skickades!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+
+    fun getReport(): String {
         var resultOk = true
         var report = ""
 
-        constraint_layout.forEach { view ->
+        linear_layout.forEach { view ->
             if (view is MaterialEditText) {
                 if (view.text.isBlank()) {
                     resultOk = false
@@ -83,12 +123,29 @@ class MainActivity : AppCompatActivity(), WeatherFetcher.WeatherFetchFinished, R
         else return ""
     }
 
+    private fun requestSmsPermission(): Boolean {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS), SMS_REQUEST)
+            return false
+        }
+
+        return true
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
                                             results: IntArray) {
         when (requestCode) {
             LOCATION_REQUEST -> {
                 if (results.isNotEmpty() && results[0] == PackageManager.PERMISSION_GRANTED) {
                     locHelper.doConnect(true)
+                }
+            }
+
+            SMS_REQUEST -> {
+                if (results.isNotEmpty() && results[0] == PackageManager.PERMISSION_GRANTED) {
+                    //TODO Skicka meddelande
+                } else {
+                    Toast.makeText(this, "Du måste godkänna för att skicka SMS", Toast.LENGTH_LONG).show()
                 }
             }
         }
