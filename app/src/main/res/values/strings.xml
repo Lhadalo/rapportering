@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Rapportering</string>
+    <string name="tv_show_title">Föreställning</string>
+    <string name="et_production">Produktion</string>
+    <string name="et_stage">Scen/plats</string>
+    <string name="et_audience">Publikantal</string>
+    <string name="et_nbr_childs">/varav barn</string>
+    <string name="tv_title_times">Tider</string>
+    <string name="et_date">Datum</string>
+    <string name="et_planned_starttime">Planerad starttid</string>
+    <string name="et_actual_starttime">Starttid</string>
+    <string name="et_stop_time">Sluttid</string>
+    <string name="tv_performance_title">Utförande</string>
+    <string name="et_weather">Väder</string>
+    <string name="et_temperature">Temperatur</string>
+    <string name="tv_other_title">Övrigt</string>
+    <string name="et_fill_material">Påfyllnad marknadsmaterial</string>
+    <string name="et_lost_found">Upphittat/kvarglömt</string>
+    <string name="et_comment">Anmärkning/kommentar</string>
+    <string name="persons_title">Personer</string>
+
+    <string name="error_et_empty">Måste fyllas i</string>
+    <string name="activity_contacts_title">Kontakter</string>
+    <string name="et_reporter">Rapportör</string>
+    <string name="degree_celsius">°C</string>
+
+    <!-- Dessa strängar måste stämma överens med arrayen editTexts i MainActivity-->
+    <string-array name="titlar">
+        <item>Arrangemang:&#160;</item>
+        <item>Spelplats:&#160;</item>
+        <item>Publikantal:&#160;</item>
+        <item>/varav barn:&#160;</item>
+        <item>Datum:&#160;</item>
+        <item>Föreställningens planerade starttid:&#160;</item>
+        <item>Föreställningen började:&#160;</item>
+        <item>Föreställningen slutade:&#160;</item>
+        <item>Väder:&#160;</item>
+        <item>Temperatur:&#160;</item>§
+        <item>Anmärkning/kommentar:&#160;</item>
+        <item>Skador/publikskador:&#160;</item>
+        <item>Detta behöver fyllas på:&#160;</item>
+        <item>Upphittat/kvarglömt:&#160;</item>
+        <item>Rapportör:&#160;</item>
+    </string-array>
+</resources>

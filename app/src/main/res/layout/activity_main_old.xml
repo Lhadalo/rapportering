@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_arr"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/tv_show_title"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_arr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_arr"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/et_production"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            app:met_floatingLabel="normal"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_plats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_arr"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:hint="@string/et_stage"
+            android:singleLine="true"
+            app:met_floatingLabel="normal"/>
+
+        <LinearLayout
+            android:id="@+id/layout_publik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_plats"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_publik_tot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:hint="@string/et_audience"
+                android:inputType="number"
+                android:nextFocusDown="@+id/et_publik_barn"
+                app:met_floatingLabel="normal"
+                app:met_minBottomTextLines="1"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@id/et_publik_barn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/et_nbr_childs"
+                android:inputType="number"
+                app:met_floatingLabel="normal"
+                app:met_minBottomTextLines="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_tid"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_publik"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/tv_title_times"/>
+
+        <LinearLayout
+            android:id="@+id/layout_datum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_tid"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_datum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/et_date"
+                android:inputType="date"
+                app:met_floatingLabel="normal"/>
+
+            <ImageButton
+                android:id="@+id/btn_datum"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/et_date"
+                android:src="@drawable/ic_date_range_black_24dp"/>
+        </LinearLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_planerad_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_datum"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:hint="@string/et_planned_starttime"
+            android:inputType="time"
+            app:met_floatingLabel="normal"/>
+
+        <LinearLayout
+            android:id="@+id/layout_tid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_planerad_start"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_start_faktisk"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:hint="@string/et_actual_starttime"
+                android:inputType="time"
+                android:nextFocusDown="@+id/et_slut_faktisk"
+                app:met_floatingLabel="normal"
+                app:met_minBottomTextLines="1"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@id/et_slut_faktisk"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/et_stop_time"
+                android:inputType="time"
+                android:nextFocusDown="@+id/et_weather_desc"
+                app:met_floatingLabel="normal"
+                app:met_minBottomTextLines="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_vader"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_tid"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/tv_performance_title"/>
+
+        <LinearLayout
+            android:id="@+id/layout_vader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_vader"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@id/et_weather_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:hint="@string/et_weather"
+                android:maxLines="1"
+                app:met_floatingLabel="normal"
+                app:met_minBottomTextLines="1"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_temp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/et_temperature"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:nextFocusDown="@+id/et_comment"
+                app:met_floatingLabel="normal"
+                app:met_minBottomTextLines="1"/>
+
+            <ImageButton
+                android:id="@+id/btn_weather"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_date_range_black_24dp"/>
+
+        </LinearLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@id/et_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_vader"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/et_comment"
+            app:met_floatingLabel="normal"/>
+
+        <!--<com.rengwuxian.materialedittext.MaterialEditText-->
+        <!--android:id="@+id/et_skador"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/et_anmarkning"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:hint="Skador"-->
+        <!--app:met_floatingLabel="normal"/>-->
+
+        <TextView
+            android:id="@+id/txt_ovrigt"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_comment"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/tv_other_title"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_fill_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_ovrigt"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/et_fill_material"
+            app:met_floatingLabel="normal"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_upphittat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_fill_material"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/et_lost_found"
+            app:met_floatingLabel="normal"/>
+
+
+        <!--<CheckBox-->
+        <!--android:id="@+id/checkbox_container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/et_upphittat"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:text="Tömning av container"-->
+        <!--android:textColor="@android:color/darker_gray"-->
+        <!--android:textSize="15sp"/>-->
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/et_reporter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_upphittat"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="Rapportör"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            app:met_floatingLabel="normal"/>
+
+        <LinearLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/et_reporter"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_send_sms"
+                    style="?android:buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/ic_send_black_24dp"
+                    android:text="Skicka SMS!"
+                    android:textColor="@android:color/white"/>
+
+                <Button
+                    android:id="@+id/btn_send_email"
+                    style="?android:buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/ic_send_black_24dp"
+                    android:text="Mail"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
+
+
+
+
+
+
