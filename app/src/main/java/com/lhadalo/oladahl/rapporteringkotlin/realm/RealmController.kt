@@ -13,6 +13,7 @@ class RealmController(val callback: RealmTransactionChange) {
 
     interface RealmTransactionChange {
         fun onContactAdded(contact: Contact)
+        fun onContactDeleted(contact: Contact)
     }
 
     companion object {
@@ -41,5 +42,12 @@ class RealmController(val callback: RealmTransactionChange) {
                 realm.copyToRealmOrUpdate(contact)
             }
         }
+    }
+
+    fun deleteContact(contact: Contact) {
+        mRealm.executeTransaction {
+            contact.deleteFromRealm()
+        }
+
     }
 }

@@ -310,7 +310,7 @@
                     android:layout_height="match_parent"
                     android:drawablePadding="4dp"
                     android:drawableTop="@drawable/ic_send_black_24dp"
-                    android:text="Skicka SMS!"
+                    android:text="Skicka SEND_SMS!"
                     android:textColor="@android:color/white"/>
 
                 <Button

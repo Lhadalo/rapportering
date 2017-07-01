@@ -6,10 +6,10 @@
     android:layout_height="wrap_content">
 
     <ScrollView
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:id="@+id/linear_layout"
@@ -21,14 +21,15 @@
 
             <LinearLayout
                 android:id="@+id/layout_show"
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <ImageView
                     android:id="@+id/img_show"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_audiotrack_black_24dp"/>
 
                 <TextView
@@ -45,22 +46,22 @@
                 android:id="@+id/et_production"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:hint="@string/et_production"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/et_stage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:hint="@string/et_stage"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
 
             <LinearLayout
@@ -73,11 +74,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:hint="@string/et_audience"
                     android:imeOptions="actionNext"
                     android:inputType="number"
+                    android:textSize="@dimen/edit_text_textsize"
                     app:met_floatingLabel="highlight"/>
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -86,11 +87,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:hint="@string/et_nbr_childs"
                     android:imeOptions="actionNext"
                     android:inputType="number"
+                    android:textSize="@dimen/edit_text_textsize"
                     app:met_floatingLabel="highlight"/>
             </LinearLayout>
 
@@ -98,21 +99,21 @@
                 android:id="@+id/et_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:hint="@string/et_comment"
-                android:inputType="text"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
 
             <LinearLayout
                 android:id="@+id/layout_times"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="8dp">
 
                 <ImageView
                     android:id="@+id/img_times"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_access_time_black_24dp"/>
 
                 <TextView
@@ -125,29 +126,45 @@
                     android:text="@string/tv_title_times"/>
             </LinearLayout>
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/et_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:hint="@string/et_date"
-                android:imeOptions="actionNext"
-                android:inputType="date"
-                app:met_floatingLabel="highlight"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/et_planned_starttime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="@string/et_planned_starttime"
-                android:imeOptions="actionNext"
-                android:inputType="time"
-                app:met_floatingLabel="highlight"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/et_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/et_date"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:textSize="@dimen/edit_text_textsize"
+                    app:met_floatingLabel="highlight"/>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/et_planned_starttime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/et_planned_starttime"
+                    android:textSize="@dimen/edit_text_textsize"
+                    app:met_floatingLabel="highlight"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp">
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/et_actual_starttime"
@@ -155,11 +172,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/et_actual_starttime"
-                    android:imeOptions="actionNext"
-                    android:inputType="time"
+                    android:textSize="@dimen/edit_text_textsize"
                     app:met_floatingLabel="highlight"/>
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -168,23 +186,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/et_stop_time"
-                    android:imeOptions="actionNext"
-                    android:inputType="time"
+                    android:textSize="@dimen/edit_text_textsize"
                     app:met_floatingLabel="highlight"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="8dp">
 
                 <ImageView
                     android:id="@+id/img_weather"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_cloud_queue_black_24dp"/>
 
                 <TextView
@@ -201,23 +221,30 @@
                 android:id="@+id/et_weather_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="Beskrivning"
+                android:layout_marginTop="1dp"
+                android:hint="Väder"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/et_weather_temperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="1dp"
                 android:hint="Temperatur"
+                android:imeOptions="actionNext"
                 android:inputType="number"
+                android:maxLines="1"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="8dp">
 
                 <ImageView
                     android:id="@+id/img_more"
@@ -239,22 +266,24 @@
                 android:id="@+id/et_fill_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="1dp"
                 android:hint="@string/et_fill_material"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/et_lost_found"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="1dp"
                 android:hint="@string/et_lost_found"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLines="1"
+                android:textSize="@dimen/edit_text_textsize"
                 app:met_floatingLabel="highlight"/>
         </LinearLayout>
     </ScrollView>
@@ -278,27 +307,24 @@
             android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_send_sms"
-                style="?android:buttonBarButtonStyle"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawablePadding="4dp"
-                android:drawableTop="@drawable/ic_message_black_24dp"
-                android:text="Skicka SMS!"
-                android:textColor="@android:color/white"/>
 
-            <Button
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/btn_send_sms"
+                android:src="@drawable/ic_message_black_24dp"/>
+
+            <ImageButton
                 android:id="@+id/btn_send_email"
-                style="?android:buttonBarButtonStyle"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawablePadding="4dp"
-                android:drawableTop="@drawable/ic_email_black_24dp"
-                android:text="Skicka Mail!"
-                android:textColor="@android:color/white"/>
+                android:contentDescription="@string/btn_send_mail"
+                android:src="@drawable/ic_email_black_24dp"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -18,10 +18,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.CheckBox
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import com.lhadalo.oladahl.rapporteringkotlin.R
 import com.lhadalo.oladahl.rapporteringkotlin.realm.RealmController
 import com.lhadalo.oladahl.rapporteringkotlin.realm.model.Contact
@@ -39,7 +36,7 @@ import kotlinx.android.synthetic.main.dialog_layout.view.*
 class ContactsActivity : AppCompatActivity(), RealmController.RealmTransactionChange {
     val realmController: RealmController by lazy { RealmController.create(this) }
     val prefs: PreferenceUtil by lazy { PreferenceUtil(this) }
-    private val adapter: ArrayAdapter<Contact> by lazy {ArrayAdapter(this, android.R.layout.simple_list_item_1, contacts)}
+    private val adapter: ArrayAdapter<Contact> by lazy { ArrayAdapter(this, android.R.layout.simple_list_item_1, contacts) }
     private val contacts: ArrayList<Contact> = ArrayList()
     val CONTACT_PICKER_RESULT = 100
     val READ_CONTACTS_REQUEST = 101
@@ -57,7 +54,7 @@ class ContactsActivity : AppCompatActivity(), RealmController.RealmTransactionCh
         realmController.getAllContacts().forEach { contact -> contacts.add(contact) }
         list.adapter = adapter
         list.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(this, position.toString(), Toast.LENGTH_LONG).show()
+            showContactInfo(contacts[position], position)
         }
     }
 
@@ -98,10 +95,50 @@ class ContactsActivity : AppCompatActivity(), RealmController.RealmTransactionCh
         adapter.notifyDataSetChanged()
     }
 
-    fun showContactInfo(contact: Contact) {
+    override fun onContactDeleted(contact: Contact) {
+
+    }
+
+    fun showContactInfo(contact: Contact, listIndex: Int) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(contact.displayName)
         val parent = LayoutInflater.from(this).inflate(R.layout.dialog_layout, null) as LinearLayout
+
+        if (contact.phonenumbers.size > 0) {
+            contact.phonenumbers.forEach { number ->
+                val textView = TextView(this)
+                textView.text = number.phoneNumber
+                parent.phone_container.addView(textView)
+            }
+        } else {
+            parent.dialog_title_phone.visibility = View.GONE
+            parent.phone_container.visibility = View.GONE
+        }
+
+        if (contact.emailAdresses.size > 0) {
+            contact.emailAdresses.forEach { adress ->
+                val textView = TextView(this)
+                textView.text = adress.emailAddress
+                parent.email_container.addView(textView)
+            }
+        }
+
+        builder.setView(parent)
+
+
+        builder.setNeutralButton("Radera", {dialog, which ->
+            contacts.remove(contact)
+            adapter.notifyDataSetChanged()
+            realmController.deleteContact(contact)
+            dialog.dismiss()
+        })
+
+        builder.setPositiveButton("OK", {dialog, which ->
+
+        })
+
+        builder.create().show()
+
     }
 
     fun showContactsPicker(id: String, name: String, numbers: RealmList<Phone>, emails: RealmList<Email>) {
@@ -111,7 +148,7 @@ class ContactsActivity : AppCompatActivity(), RealmController.RealmTransactionCh
 
         val parent = LayoutInflater.from(this).inflate(R.layout.dialog_layout, null) as LinearLayout
 
-        if(numbers.size > 0) {
+        if (numbers.size > 0) {
             numbers.forEach { number ->
                 val checkbox = CheckBox(this)
                 checkbox.text = number.phoneNumber
@@ -122,12 +159,15 @@ class ContactsActivity : AppCompatActivity(), RealmController.RealmTransactionCh
             parent.phone_container.visibility = View.GONE
         }
 
-        if(emails.size > 0) {
+        if (emails.size > 0) {
             emails.forEach { email ->
                 val checkbox = CheckBox(this)
                 checkbox.text = email.emailAddress
                 parent.email_container.addView(checkbox)
             }
+        } else {
+            parent.dialog_title_email.visibility = View.GONE
+            parent.email_container.visibility = View.GONE
         }
 
         builder.setView(parent)
