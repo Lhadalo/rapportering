@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
 
         this.title = getString(R.string.app_name)
+        this.setSupportActionBar(toolbar)
         et_date.setText(dateFormat.format(Calendar.getInstance().time))
 
         listeners()
@@ -96,7 +97,16 @@ class MainActivity : AppCompatActivity(),
             createSendDialog(SEND_EMAIL, "Testing")
         }
         */
+        /*
         btn_send_sms.setOnClickListener {
+            val report = getReport()
+            if (report.isNotBlank()) {
+                createSendDialog(SEND_SMS, report)
+            }
+        }
+        */
+
+        btn_send.setOnClickListener {
             val report = getReport()
             if (report.isNotBlank()) {
                 createSendDialog(SEND_SMS, report)

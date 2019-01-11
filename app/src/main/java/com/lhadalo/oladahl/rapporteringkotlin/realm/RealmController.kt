@@ -1,5 +1,6 @@
 package com.lhadalo.oladahl.rapporteringkotlin.realm
 
+import android.util.Log
 import com.lhadalo.oladahl.rapporteringkotlin.realm.model.Contact
 import com.lhadalo.oladahl.rapporteringkotlin.realm.model.Email
 import com.lhadalo.oladahl.rapporteringkotlin.realm.model.Phone
@@ -17,7 +18,7 @@ class RealmController(val callback: RealmTransactionChange) {
     }
 
     companion object {
-        val TAG = RealmController::class.java.simpleName
+        const val TAG = "RealmController"
         fun create(callback: RealmTransactionChange): RealmController = RealmController(callback)
     }
 
@@ -48,6 +49,7 @@ class RealmController(val callback: RealmTransactionChange) {
         mRealm.executeTransaction {
             contact.deleteFromRealm()
         }
+        Log.d(TAG, "Contact deleted")
 
     }
 }
